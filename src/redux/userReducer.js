@@ -19,12 +19,12 @@ const LOGOUT_USER = 'LOGOUT_USER'
 // const CONTINUE_AS_GUEST = 'CONTINUE_AS_GUEST'
 const SEND_NEW_PASSWORD = 'SEND_NEW_PASSWORD'
 
-export const signUp = (email, password, admin) => {
+export const signUp = (email, password) => {
   console.log('signUp pressed')
   // const email = credentials.email;
   // const password = credentials.password;
   // const admin = credentials.admin;
-  let userData = axios.post('/auth/signup', {email, password, admin})
+  let userData = axios.post('/auth/signup', {email, password})
   .then(res =>res.data)
   .catch(err => {
     alert(`a sign up error has occured ${err}`);

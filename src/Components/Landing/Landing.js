@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 import './Landing.css';
 
 
@@ -60,6 +61,8 @@ class Landing extends Component{
     return(
       <div id='landing'>
         <h1>landing page</h1>
+        <Link to='/Signin' className='links'>Sign In</Link>
+        <br />
         <input type='text' placeholder='Type Here' onChange={e => this.HandleText(e.target.value)} />
         {/* {lettersList} */}
         {/* {this.state?.lettersUsed.map()} */}

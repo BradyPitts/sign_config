@@ -4,7 +4,7 @@ const nodemailer = require('nodemailer');
 module.exports ={
   
   signUp: async (req,res) =>{
-    const {email, password, admin} = req.body;
+    const {email, password} = req.body;
     console.log('signUp server ping');
     console.log(req.body);
     const db = req.app.get('db');
@@ -15,7 +15,7 @@ module.exports ={
     };
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(password,salt);
-    const registeredUser = await db.sign_up_user([email, hash, admin]);
+    const registeredUser = await db.sign([email, hash]);
     console.log(registeredUser)
     const user = registeredUser[0];
     // req.session.user = {isAdmin: user.admin, email: user.email, id: user.user_id};

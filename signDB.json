@@ -1,7 +1,6 @@
 {
   "users":{
     "userID": 0,
-    "username":"example User",
     "email":"example email",
     "hashWord":"exampleHash"
   },

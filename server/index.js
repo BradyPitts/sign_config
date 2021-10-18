@@ -35,7 +35,7 @@ app.use(
   })
 );
 
-app.put('/auth/signup', authController.signUp);
+app.post('/auth/signup', authController.signUp);
 app.post('/auth/login', authController.login);
 app.delete('/auth/logout', authController.logout);
 app.post('/auth/newPassword', authController.newPassword);
