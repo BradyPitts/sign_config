@@ -15,7 +15,7 @@ module.exports ={
     };
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(password,salt);
-    const registeredUser = await db.sign([email, hash]);
+    const registeredUser = await db.signup([email, hash]);
     console.log(registeredUser)
     const user = registeredUser[0];
     // req.session.user = {isAdmin: user.admin, email: user.email, id: user.user_id};

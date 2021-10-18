@@ -80,7 +80,7 @@ export default function reducer(state = initialState, action){
 
     case REGISTER_USER + "_FULFILLED":
       console.log(action.payload)
-      return{...state, user_id:action.payload.user.user_id, admin:action.payload.user.admin, isLoggedIn:action.payload.isLoggedIn}
+      return{...state, user_id:action.payload.user.user_id, isLoggedIn:action.payload.isLoggedIn}
 
     case LOGIN_USER + "_FULFILLED":
       console.log(action.payload)

@@ -46,7 +46,7 @@ class Signin extends Component{
         <div id='buttons'>
           <button onClick={() => this.props.login(this.state.email, this.state.password)}>Log In</button>
 
-          <button onClick={() => this.props.signUp(this.state.email, this.state.password, this.props.user.admin)}>Sign Up</button>
+          <button onClick={() => this.props.signUp(this.state.email, this.state.password)}>Sign Up</button>
 
           <button onClick={() => this.props.sendNewPassword(this.state.email, this.makePassword(8))}>Forgot Password</button>
         </div>
