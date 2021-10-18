@@ -26,7 +26,7 @@ export const getUserData = () =>{
   console.log('Get User Data Reducer Ping')
 }
 
-export const saveUserData = () =>{
+export const updateData = () =>{
   console.log('Save Data Reducer Ping')
 }
 
