@@ -91,7 +91,7 @@ module.exports ={
     console.log(registeredUser)
     // const user = registeredUser[0];
     // req.session.user = {isAdmin: user.admin, email: user.email, id: user.user_id};
-    return res.status(201).send({isLoggedIn: true, user});
+    return res.status(201);
   }
 
 }

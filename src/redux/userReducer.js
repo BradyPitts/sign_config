@@ -95,6 +95,6 @@ export default function reducer(state = initialState, action){
 
     default:
     // console.log(state)
-      return state
+      return initialState
   }
 }

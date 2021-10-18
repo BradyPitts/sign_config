@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {Link, Redirect} from 'react-router-dom';
 import {login, signUp, sendNewPassword} from '../../redux/userReducer';
+
 import './Signin.css';
 
 class Signin extends Component{
@@ -32,6 +34,11 @@ class Signin extends Component{
 
 
   render(){
+    console.log(this.props.user.isLoggedIn)
+    // if(this.props.user.isLoggedIn === true){
+    //   console.log('redirecting...');
+    //   <Redirect to='User' />
+    // }
     return(
       <div id='Signin'>
         <div className="form-group">
@@ -50,6 +57,10 @@ class Signin extends Component{
 
           <button onClick={() => this.props.sendNewPassword(this.state.email, this.makePassword(8))}>Forgot Password</button>
         </div>
+
+        <Link to='/' className='links' >Back to Sample Page</Link>
+
+        {this.props.user.isLoggedIn ? <Redirect to='/User' />: <Redirect to ='/Signin' /> }
       </div>
     )
   }
@@ -58,7 +69,8 @@ class Signin extends Component{
   
 function mapStateToProps(state){
   return{
-    data: state.data
+    data: state.data,
+    user: state.user
   }
 }
 
