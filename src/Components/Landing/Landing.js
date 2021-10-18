@@ -6,7 +6,7 @@ import './Landing.css';
 class Landing extends Component{
 
   // componentDidMount(){
-  //   this.setState({lettersUsed:[]})
+  //   this.setState({lettersUsed:{}})
   // }
 
 
@@ -16,11 +16,11 @@ class Landing extends Component{
     // const sampleCounter = []
     // this.props.sampleChar.map(i => console.log(this.props.sampleChar[i]))
     // this.props.sampleChar.map(i => sampleCounter.push(input.split([i]).length -1));
-    console.log('above if1')
+    // console.log('above if1')
     const sampleCounter = this.props.data.sampleChar.map((sampleChar) => (input.split(`${sampleChar}`).length -1));
-    console.log('above if2')
+    // console.log('above if2')
     // console.log(sampleCounter);
-    console.log('above if3')
+    // console.log('above if3')
     const lettersUsedLoop = {};
     // console.log(this.props.data.sampleChar.length)
 
@@ -48,11 +48,22 @@ class Landing extends Component{
   render(){
     // let lettersUsed = charCount
     // console.log(this.state.lettersUsed);
+    // if (this.state.lettersUsed === null){
+    //   this.setState({message:'letters needed will show here'})
+    // } else {
+    //   this.setState({message:this.state.lettersUsed})
+    // };
+    // console.log(this.state?.lettersUsed)
+    // const lettersList = this.state?.lettersUsed.map(lettersUsed) => {
+
+    // }
     return(
       <div id='landing'>
         <h1>landing page</h1>
         <input type='text' placeholder='Type Here' onChange={e => this.HandleText(e.target.value)} />
-        {/* <p>{this.state.lettersUsed}</p> */}
+        {/* {lettersList} */}
+        {/* {this.state?.lettersUsed.map()} */}
+        <p>{JSON.stringify(this.state?.lettersUsed)}</p>
       </div>
     )
   }
