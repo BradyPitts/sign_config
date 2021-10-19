@@ -34,7 +34,7 @@ class Signin extends Component{
 
 
   render(){
-    console.log(this.props.user.isLoggedIn)
+    console.log(`User signed in? : ${this.props.user.isLoggedIn}`)
     // if(this.props.user.isLoggedIn === true){
     //   console.log('redirecting...');
     //   <Redirect to='User' />
@@ -61,6 +61,7 @@ class Signin extends Component{
         <Link to='/' className='links' >Back to Sample Page</Link>
 
         {this.props.user.isLoggedIn ? <Redirect to='/User' />: <Redirect to ='/Signin' /> }
+        
       </div>
     )
   }

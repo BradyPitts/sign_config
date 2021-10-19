@@ -5,7 +5,6 @@ const initialState = {
   user_id: null,
   email: '',
   password: '',
-  admin: false,
   isLoggedIn: false,
   newPassword: ''
   
@@ -95,6 +94,6 @@ export default function reducer(state = initialState, action){
 
     default:
     // console.log(state)
-      return initialState
+      return state
   }
 }
