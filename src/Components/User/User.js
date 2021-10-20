@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {Link, Redirect} from 'react-router-dom';
 import {logout} from '../../redux/userReducer';
 import {getUserData} from '../../redux/dataReducer';
+import './User.css';
 
 class User extends Component{
 
@@ -16,6 +17,7 @@ class User extends Component{
       // console.log(this.props.data.userData)
       this.setState({userData: this.props.data.userData})
     }
+    this.setState({ifany:false})
   }
 
   
@@ -46,6 +48,12 @@ class User extends Component{
     console.log(insufLetLoop)
     // console.log(this.props.data.userData)
     this.setState({lettersUsed:lettersUsedLoop, insufLet:insufLetLoop})
+
+    // console.log(Object.keys(insufLetLoop).length)
+    if(Object.keys(insufLetLoop).length > 0){
+      this.setState({ifany:true})
+    } else {this.setState({ifany:false})}
+    
   }
 
 
@@ -53,17 +61,28 @@ class User extends Component{
   render(){
     // console.log(`User data stashed? : ${this.props.data.userDataStashed}`)
     // console.log(this.props.data.userData)
-    return(
-      <div id='about'>
-        <p>User page</p>
-        <Link to='/Edit' className='links'>Edit Data</Link>
-        <button onClick={() => this.props.logout()} >Log out</button>
+    // console.log(this.state?.ifany)
 
-        <input type='text' placeholder='Type Here' onChange={e => this.HandleText(e.target.value)} />
+    return(
+      <div id='home'>
+        {/* <p>User page</p> */}
+
+        <div id='nav'>
+          <Link to='/Edit' className='links'><button id='link'>Edit Data</button></Link>
+          <button onClick={() => this.props.logout()} >Log out</button>
+        </div>
+
+        <textarea type='text' placeholder='Type Here' onChange={e => this.HandleText(e.target.value)} />
         <h3>Letters Used</h3>
         <p>{JSON.stringify(this.state?.lettersUsed, null, 1)}</p>
-        <h3>Insufficent Letters (if any)</h3>
-        <p>{JSON.stringify(this.state?.insufLet, null, 1)}</p>
+
+
+        {this.state?.ifany ? 
+        <>
+        <h3>Insufficent Letters</h3>
+        <p className='insuf'>{JSON.stringify(this.state?.insufLet, null, 1)}</p>
+        </>
+        : <div></div>}
 
 
         {this.props.user.isLoggedIn ? <Redirect to='/User' />: <Redirect to ='/Signin' /> }

@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {Link, Redirect} from 'react-router-dom';
 import {logout} from '../../redux/userReducer';
 import {getUserData, saveData} from '../../redux/dataReducer';
-
+import './Edit.css';
 class Edit extends Component{
 
   componentWillMount(){
@@ -31,7 +31,7 @@ class Edit extends Component{
     return Object.keys(data).map((char) => {
       return(
     // Object.keys(this.state?.userData).map()
-        <div>
+        <div id='drops'>
           <label for='characters'>{char}: </label>
           <select id='characters' name='number' onChange={e => this.HandleValue(char, e.target.value)}>
             <option value='' disabled selected>{data[char]}</option>
@@ -71,10 +71,13 @@ class Edit extends Component{
 
     // console.log(this.state?.userData)
     return(
-      <div id='about'>
-        <p>Edit page</p>
-        <Link to='/User' className='links'>Home</Link>
-        <button onClick={() => this.props.logout()} >Log out</button>
+      <div id='edit'>
+        <h1>Edit page</h1>
+
+        <div id='nav'>
+          <Link to='/User' className='links'><button>Home</button></Link>
+          <button onClick={() => this.props.logout()} >Log out</button>
+        </div>
 
         {/* <ul> */}
         <div className='select'>

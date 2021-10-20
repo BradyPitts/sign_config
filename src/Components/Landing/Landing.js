@@ -60,12 +60,17 @@ class Landing extends Component{
     // }
     return(
       <div id='landing'>
-        <h1>landing page</h1>
-        <Link to='/Signin' className='links'>Sign In</Link>
+        <h1>Sample Configurator</h1>
+        <div id='buttton'>
+        <Link to='/Signin' className='links'><button>Sign In</button></Link>
+        </div>
+
         <br />
-        <input type='text' placeholder='Type Here' onChange={e => this.HandleText(e.target.value)} />
+
+        <textarea type='text' placeholder='Type Here' onChange={e => this.HandleText(e.target.value)} />
         {/* {lettersList} */}
         {/* {this.state?.lettersUsed.map()} */}
+        <h3>Letters Used</h3>
         <p>{JSON.stringify(this.state?.lettersUsed, null, 10)}</p>
       </div>
     )

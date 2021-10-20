@@ -1,0 +1,69 @@
+#Signin{
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 2vw;
+  font-size: 5vw;
+}
+
+input{
+  width: 40vw;
+  height: 10vw;
+  background-color: white;
+}
+
+#buttons{
+  width: 100vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+button{
+  height: 15vw;
+  width: 30vw;
+  font-size: 3vw;
+  /* margin:5vw; */
+}
+/* 
+#link{
+  height: 10vw;
+  width: 20vw;
+  border: black, solid, 2px;
+} */
+
+@media(min-width:800px){
+  .form-group{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: x-large;
+  }
+
+  input{
+    height: 70px;
+    width: 360px;
+    font-size: x-large;
+  }
+  
+  #buttons{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+  }
+  
+  button{
+    font-size: large;
+    width: 180px;
+    height: 90px;
+    margin: 10px;
+  }
+}

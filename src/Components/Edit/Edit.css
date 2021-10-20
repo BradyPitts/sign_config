@@ -1,0 +1,53 @@
+#edit{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+#nav{
+  display: flex;
+  justify-content: space-around;
+}
+
+button{
+  margin: 5vw;
+  font-size: 4vw;
+}
+
+.select{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: baseline;
+
+}
+
+#drops{
+  margin: 4vw;
+}
+
+select{
+  height: 7.5vw;
+  width: 15vw;
+}
+
+@media(min-width: 500px){
+
+  button{
+    font-size: x-large;
+  }
+  #drops{
+    margin: 4vw;
+  }
+
+  select{
+    height: 50px;
+    width: 100px;
+    font-size: large;
+  }
+
+  label{
+    font-size: x-large;
+  }
+}

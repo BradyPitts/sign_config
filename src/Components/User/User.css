@@ -1,0 +1,49 @@
+#home{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#button{
+  margin: 0;
+}
+
+button{
+  margin: 5vw;
+  font-size: 4vw;
+}
+
+textarea{
+
+  height: 10vh;
+}
+
+p{
+  height:12vh;
+  font-size: 4vw;
+}
+
+.insuf{
+  background-color: lightcoral;
+  border: red solid 3px;
+}
+
+
+@media(min-width: 800px){
+  button{
+    font-size: large;
+    width: 180px;
+    height: 90px;
+    margin: 20px;
+  }
+
+  textarea{
+    font-size: large;
+  }
+
+  p{
+    font-size: large;
+  }
+
+}

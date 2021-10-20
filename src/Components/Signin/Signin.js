@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link, Redirect} from 'react-router-dom';
 import {login, signUp, sendNewPassword} from '../../redux/userReducer';
-
 import './Signin.css';
 
 class Signin extends Component{
@@ -41,12 +40,13 @@ class Signin extends Component{
     // }
     return(
       <div id='Signin'>
+        <h1>Sign in</h1>
         <div className="form-group">
-          <label>Email</label>
+          <label>Email: </label>
           <input type="email" className="form-control" placeholder="Email" onChange={e => this.handleEmail(e.target.value)} />
         </div>
         <div className="form-group">
-          <label>Password</label>
+          <label>Password: </label>
           <input type="password" className="form-control" placeholder="Password" onChange={e => this.handlePassword(e.target.value)} />
         </div>
 
@@ -56,9 +56,9 @@ class Signin extends Component{
           <button onClick={() => this.props.signUp(this.state.email, this.state.password)}>Sign Up</button>
 
           <button onClick={() => this.props.sendNewPassword(this.state.email, this.makePassword(8))}>Forgot Password</button>
-        </div>
 
-        <Link to='/' className='links' >Back to Sample Page</Link>
+          <Link to='/' className='links' ><button>Back to Sample Page</button></Link>
+        </div>
 
         {this.props.user.isLoggedIn ? <Redirect to='/User' />: <Redirect to ='/Signin' /> }
         
