@@ -41,7 +41,7 @@ app.delete('/auth/logout', authController.logout);
 app.post('/auth/newPassword', authController.newPassword);
 
 app.post('/api/data', dataController.getData);
-app.put('/api/data', dataController.updateData);
+app.put('/api/data', dataController.saveData);
 
 app.use(express.static(`${__dirname}/../build`));
 

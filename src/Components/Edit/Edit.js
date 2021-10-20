@@ -6,59 +6,60 @@ import {getUserData, saveData} from '../../redux/dataReducer';
 
 class Edit extends Component{
 
-  componentDidMount(){
+  componentWillMount(){
+    // this.props.getUserData(this.props.user.user_id)
+    // console.log(this.props.user.user_id)
     if(!this.props.data.userDataStashed){
       console.log('Initializing user data slate') 
-      // this.props.getUserData(this.props.user.user_id);
       const noData = {};
-      // this.props.data.sampleChar.map((char) =>{
-      //   noData[char] = 0
-      // })
       for (let i = 0; i < this.props.data.sampleChar.length; i++){
         noData[this.props.data.sampleChar[i]] = 0;
       }
-      this.setState({userData:noData, userDataStashed:true})
-    }
-    // this.HandleData(this.props.data.sampleChar);
+      this.setState({userData:noData})
+    } else {
+      this.setState({userData:this.props.data.userData})}
   }
 
   HandleValue(char, int){
-    const charInt = {};
-    charInt[char] = int
+    console.log(char, int)
+    const charInt = this.state.userData;
+    charInt[char] = parseInt(int)
     this.setState({userData:charInt})
-    console.log(charInt)
   }
 
   HandleData(data){
-    // console.log('HandleData called')
-    // console.log(data)
-    return data.map((char) =>{
-      return(  
-        <li>
+    return Object.keys(data).map((char) => {
+      return(
+    // Object.keys(this.state?.userData).map()
+        <div>
           <label for='characters'>{char}: </label>
           <select id='characters' name='number' onChange={e => this.HandleValue(char, e.target.value)}>
-            <option value='0'>0</option>
-            <option value='1'>1</option>
-            <option value='2'>2</option>
-            <option value='3'>3</option>
-            <option value='4'>4</option>
-            <option value='5'>5</option>
-            <option value='6'>6</option>
-            <option value='7'>7</option>
-            <option value='8'>8</option>
-            <option value='9'>9</option>
-            <option value='10'>10</option>
-            <option value='11'>11</option>
-            <option value='12'>12</option>
-            <option value='13'>13</option>
-            <option value='14'>14</option>
-            <option value='15'>15</option>
+            <option value='' disabled selected>{data[char]}</option>
+            <option value={0}>0</option>
+            <option value={1}>1</option>
+            <option value={2}>2</option>
+            <option value={3}>3</option>
+            <option value={4}>4</option>
+            <option value={5}>5</option>
+            <option value={6}>6</option>
+            <option value={7}>7</option>
+            <option value={8}>8</option>
+            <option value={9}>9</option>
+            <option value={10}>10</option>
+            <option value={11}>11</option>
+            <option value={12}>12</option>
+            <option value={13}>13</option>
+            <option value={14}>14</option>
+            <option value={15}>15</option>
+            <option value={16}>16</option>
+            <option value={17}>17</option>
+            <option value={18}>18</option>
+            <option value={19}>19</option>
+            <option value={20}>20</option>
           </select>
-        </li>
+        </div>
       )
     })
-    // console.log(inputMap)
-    // this.setState({dataInput:inputMap})
   };
 
 
@@ -66,44 +67,21 @@ class Edit extends Component{
 
   render(){
 
-    console.log(this.state?.userData)
-    // console.log(this.props.data.sampleChar)
     
-    // const input = this.props.data.sampleChar.map((sampleChar) =>{
-    //   <li>
-    //     <label for='characters'>{sampleChar}</label>
-    //     <select id='characters' name='number'>
-    //       <option value='0'>0</option>
-    //       <option value='1'>1</option>
-    //       <option value='2'>2</option>
-    //       <option value='3'>3</option>
-    //       <option value='4'>4</option>
-    //       <option value='5'>5</option>
-    //       <option value='6'>6</option>
-    //       <option value='7'>7</option>
-    //       <option value='8'>8</option>
-    //       <option value='9'>9</option>
-    //       <option value='10'>10</option>
-    //       <option value='11'>11</option>
-    //       <option value='12'>12</option>
-    //       <option value='13'>13</option>
-    //       <option value='14'>14</option>
-    //       <option value='15'>15</option>
-    //     </select>
-    //   </li>
-    // });
 
-    // console.log(this.state.dataInput)
+    // console.log(this.state?.userData)
     return(
       <div id='about'>
         <p>Edit page</p>
         <Link to='/User' className='links'>Home</Link>
         <button onClick={() => this.props.logout()} >Log out</button>
 
-        <ul>
+        {/* <ul> */}
+        <div className='select'>
           {/* {this.state.dataInput} */}
           {this.HandleData(this.state?.userData)}
-        </ul>
+        </div>
+        {/* </ul> */}
 
         <button onClick={() => this.props.saveData(this.props.user.user_id, this.state?.userData)}>Save Data</button>
 

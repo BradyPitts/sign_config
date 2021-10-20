@@ -66,7 +66,7 @@ class Landing extends Component{
         <input type='text' placeholder='Type Here' onChange={e => this.HandleText(e.target.value)} />
         {/* {lettersList} */}
         {/* {this.state?.lettersUsed.map()} */}
-        <p>{JSON.stringify(this.state?.lettersUsed)}</p>
+        <p>{JSON.stringify(this.state?.lettersUsed, null, 10)}</p>
       </div>
     )
   }

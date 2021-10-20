@@ -36,6 +36,7 @@ export const getUserData = (id) =>{
 
 export const saveData = (id, userData) =>{
   console.log('Save Data Reducer Ping')
+  // console.log(userData)
   axios.put('/api/data', {id, userData})
   .then(res => res.data)
   .catch(err => console.log(err))
@@ -55,7 +56,10 @@ export default function reducer(state = initialState, action){
     case GET_USER_DATA + '_FULFILLED':
       console.log('Get Data Fulfilled')
       console.log(action.payload)
-      return {...state, userData: action.payload};
+      return {...state, userDataStashed:action.payload.userDataStashed, userData: action.payload.data.user_data};
+
+    case GET_USER_DATA + '_FAILED':
+      ;
 
     case  SAVE_USER_DATA + '_PENDING':
       console.log('Save Data Pending')
