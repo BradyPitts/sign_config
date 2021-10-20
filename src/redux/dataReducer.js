@@ -56,7 +56,12 @@ export default function reducer(state = initialState, action){
     case GET_USER_DATA + '_FULFILLED':
       console.log('Get Data Fulfilled')
       console.log(action.payload)
-      return {...state, userDataStashed:action.payload.userDataStashed, userData: action.payload.data.user_data};
+      if (action.payload !== undefined) {
+        return {...state, userDataStashed:action.payload.userDataStashed, userData: action.payload.data.user_data};
+      } else {
+        return {...state, userDataStashed:false};
+      }
+      
 
     case GET_USER_DATA + '_FAILED':
       ;

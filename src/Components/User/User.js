@@ -61,9 +61,9 @@ class User extends Component{
 
         <input type='text' placeholder='Type Here' onChange={e => this.HandleText(e.target.value)} />
         <h3>Letters Used</h3>
-        <p>{JSON.stringify(this.state?.lettersUsed), null, 10}</p>
+        <p>{JSON.stringify(this.state?.lettersUsed, null, 1)}</p>
         <h3>Insufficent Letters (if any)</h3>
-        <p>{JSON.stringify(this.state?.insufLet), null, 4}</p>
+        <p>{JSON.stringify(this.state?.insufLet, null, 1)}</p>
 
 
         {this.props.user.isLoggedIn ? <Redirect to='/User' />: <Redirect to ='/Signin' /> }

@@ -7,8 +7,9 @@ module.exports = {
     const foundData = await req.app.get('db').get_user_data([id]);
     const data = foundData[0];
     if(!data){
+      let data = {};
       console.log(`Data not found for user #${id}`)
-      return res.status(404).send({userDataStashed: false})
+      return res.status(404).send({userDataStashed: false, data})
     }
     console.log(`returning data for user ${id}`)
     return res.status(200).send({userDataStashed: true, data});
