@@ -1,30 +1,38 @@
 import React, {useState, useEffect} from 'react';
-import {connect} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {Link, Redirect} from 'react-router-dom';
 import {logout} from '../../redux/userReducer';
-import {getUserData, saveData} from '../../redux/dataReducer';
+import {saveData} from '../../redux/dataReducer';
 import './Edit.css';
-function Edit(){
+export default function Edit(){
+  const [newUserData, setNewUserData] = useState('');
+  const isLoggedIn = useSelector(state => state.user.isLoggedIn);
+  const user_id = useSelector(state => state.user.user_id);
+  const userDataStashed = useSelector(state => state.data.userDataStashed);
+  const userData = useSelector(state => state.data.userData);
+  const sampleChar = useSelector(state => state.data.sampleChar)
+  const dispatch = useDispatch();
 
   useEffect(() =>{
     // this.props.getUserData(this.props.user.user_id)
     // console.log(this.props.user.user_id)
-    if(!this.props.data.userDataStashed){
+    if(!userDataStashed){
       console.log('Initializing user data slate') 
       const noData = {};
-      for (let i = 0; i < this.props.data.sampleChar.length; i++){
-        noData[this.props.data.sampleChar[i]] = 0;
+      for (let i = 0; i < sampleChar.length; i++){
+        noData[sampleChar[i]] = 0;
       }
-      this.setState({userData:noData})
+      setNewUserData(noData)
+      return;
     } 
-    else {this.setState({userData:this.props.data.userData})}
+    // else {setNewUserData(userData)}
   });
 
   const HandleValue = (char, int) =>{
     console.log(char, int)
-    const charInt = this.state.userData;
+    const charInt = userData;
     charInt[char] = parseInt(int)
-    this.setState({userData:charInt})
+    setNewUserData(charInt)
   }
 
   const HandleData = (data) =>{
@@ -63,9 +71,6 @@ function Edit(){
   };
 
 
-
-
-
   return(
     <div id='edit'>
       <h1>Edit page</h1>
@@ -74,32 +79,21 @@ function Edit(){
 
         <Link to='/User' className='links'><button>Home</button></Link>
         
-        <button onClick={() => this.props.saveData(this.props.user.user_id, this.state?.userData)}>Save Data</button>
+        <button onClick={() => dispatch(saveData(user_id, newUserData))}>Save Data</button>
         
-        <button onClick={() => this.props.logout()} >Log out</button>
+        <button onClick={() => dispatch(logout())} >Log out</button>
 
       </div>
 
       {/* <ul> */}
       <div className='select'>
         {/* {this.state.dataInput} */}
-        {HandleData(this.state?.userData)}
+        {HandleData(userData)}
       </div>
       {/* </ul> */}
 
 
-      {this.props.user.isLoggedIn ? <Redirect to='/Edit' />: <Redirect to ='/Signin' /> }
+      {isLoggedIn ? <Redirect to='/Edit' />: <Redirect to ='/Signin' /> }
     </div>
-  )
-}
-
-
- 
-function mapStateToProps(state){
-  return{
-    data: state.data,
-    user: state.user
-  }
-}
-
-export default connect(mapStateToProps, {getUserData, saveData, logout}) (Edit)
+  );
+};

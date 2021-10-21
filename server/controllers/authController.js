@@ -29,6 +29,7 @@ module.exports ={
     console.log(email, password)
     const foundUser = await req.app.get('db').get_user([email]);
     const user = foundUser[0];
+    console.log(user)
     if (!user){
       return res.status(401).send('User not found');
     }
@@ -37,7 +38,7 @@ module.exports ={
       return res.status(403).send('Wrong password');
     }
     // req.session.user = {isAdmin:user.admin, id: user.user_id,};
-    return res.status(200).send({isLoggedIn: true, user});
+    return res.status(200).send({user, isLoggedIn: true});
   },
 
   

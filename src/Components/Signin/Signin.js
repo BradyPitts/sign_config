@@ -7,22 +7,23 @@ import './Signin.css';
 export default function Signin(){
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const isLoggedIn = useSelector(state => state.user.isLoggedIn)
   // const [newPassword, setNewPassword] = useState('');
 
   // const login = () => useSelector(state => state.login)  
 
   const dispatch = useDispatch();
-  console.log(dispatch)
+  // console.log(dispatch)
 
 
-  const handleEmail = (emailValue) => {
-    console.log(emailValue);
-    setEmail(emailValue);
+  const handleEmail = (e) => {
+    console.log(e.target.value);
+    setEmail(e.target.value);
   };
   
-  const handlePassword = (passwordValue) => {
-    console.log(passwordValue);
-    setPassword(passwordValue);
+  const handlePassword = (e) => {
+    console.log(e.target.value);
+    setPassword(e.target.value);
   };
   
   const makePassword = (length) => {
@@ -66,7 +67,7 @@ export default function Signin(){
         <Link to='/' className='links' ><button>Back to Sample Page</button></Link>
       </div>
 
-      {this.props.user.isLoggedIn ? <Redirect to='/User' />: <Redirect to ='/Signin' /> }
+      {isLoggedIn ? <Redirect to='/User' />: <Redirect to ='/Signin' /> }
       
     </div>
   );
