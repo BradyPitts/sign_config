@@ -15,7 +15,7 @@ const initialState = {
 
   // userCount: ,
 
-  userDataStashed: false
+  userDataStashed: null
     
 }
 
@@ -63,8 +63,8 @@ export default function reducer(state = initialState, action){
       }
       
 
-    case GET_USER_DATA + '_FAILED':
-      ;
+    // case GET_USER_DATA + '_FAILED':
+    //   ;
 
     case  SAVE_USER_DATA + '_PENDING':
       console.log('Save Data Pending')

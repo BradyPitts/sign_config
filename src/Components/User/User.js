@@ -13,10 +13,10 @@ class User extends Component{
       console.log(`Fetching data for user #${this.props.user.user_id}`)
       this.props.getUserData(this.props.user.user_id)
     }
-    else{
+    // else{
       // console.log(this.props.data.userData)
-      this.setState({userData: this.props.data.userData})
-    }
+      // this.setState({userData: this.props.data.userData})
+    // }
     this.setState({ifany:false})
   }
 
@@ -38,7 +38,7 @@ class User extends Component{
 
     const insufLetLoop = {};
     Object.keys(lettersUsedLoop).map((char) =>{
-      if((this.state.userData[char]-lettersUsedLoop[char]) < 0){
+      if((this.props.data.userData[char]-lettersUsedLoop[char]) < 0){
         // console.log((this.state.userData[char]-lettersUsedLoop[char]))
         insufLetLoop[char] = (lettersUsedLoop[char]-this.state.userData[char])
       }
@@ -88,7 +88,7 @@ class User extends Component{
         {this.props.user.isLoggedIn ? <Redirect to='/User' />: <Redirect to ='/Signin' /> }
 
 
-        {this.props.data.userDataStashed ? <Redirect to='/User' /> : <Redirect to='/Edit' />}
+        {/* {this.props.data.userDataStashed ? <Redirect to='/User' /> : <Redirect to='/Edit' />} */}
       </div>
     )
   }

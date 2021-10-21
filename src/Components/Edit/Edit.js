@@ -16,8 +16,8 @@ class Edit extends Component{
         noData[this.props.data.sampleChar[i]] = 0;
       }
       this.setState({userData:noData})
-    } else {
-      this.setState({userData:this.props.data.userData})}
+    } 
+    else {this.setState({userData:this.props.data.userData})}
   }
 
   HandleValue(char, int){
@@ -75,8 +75,13 @@ class Edit extends Component{
         <h1>Edit page</h1>
 
         <div id='nav'>
+
           <Link to='/User' className='links'><button>Home</button></Link>
+          
+          <button onClick={() => this.props.saveData(this.props.user.user_id, this.state?.userData)}>Save Data</button>
+          
           <button onClick={() => this.props.logout()} >Log out</button>
+
         </div>
 
         {/* <ul> */}
@@ -86,7 +91,6 @@ class Edit extends Component{
         </div>
         {/* </ul> */}
 
-        <button onClick={() => this.props.saveData(this.props.user.user_id, this.state?.userData)}>Save Data</button>
 
         {this.props.user.isLoggedIn ? <Redirect to='/Edit' />: <Redirect to ='/Signin' /> }
       </div>
