@@ -1,13 +1,16 @@
-import React, {Component} from 'react';
+import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
 import {Link, Redirect} from 'react-router-dom';
 import {logout} from '../../redux/userReducer';
 import {getUserData} from '../../redux/dataReducer';
 import './User.css';
 
-class User extends Component{
+function User(){
+  const [ifany, setIfany] = useState('');
+  const [lettersUsed, setLettersUsed] = useState('');
+  const [insufLet, setInsufLet] = useState('');
 
-  componentDidMount(){
+  useEffect(() =>{
     console.log(`User Data Stashed? : ${this.props.data.userDataStashed}`)
     if(!this.props.data.userDataStashed){
       console.log(`Fetching data for user #${this.props.user.user_id}`)
@@ -17,11 +20,11 @@ class User extends Component{
       // console.log(this.props.data.userData)
       // this.setState({userData: this.props.data.userData})
     // }
-    this.setState({ifany:false})
-  }
+    setIfany(false);
+  });
 
   
-  HandleText(input){
+  const HandleText = (input) => {
     console.log(input)
     const userCounter = {};
     Object.keys(this.props.data.userData).map((char) => (userCounter[char] = input.split(`${char}`).length -1));
@@ -47,52 +50,49 @@ class User extends Component{
     console.log(lettersUsedLoop)
     console.log(insufLetLoop)
     // console.log(this.props.data.userData)
-    this.setState({lettersUsed:lettersUsedLoop, insufLet:insufLetLoop})
+    setLettersUsed(lettersUsedLoop)
+    setInsufLet(insufLetLoop)
 
     // console.log(Object.keys(insufLetLoop).length)
     if(Object.keys(insufLetLoop).length > 0){
-      this.setState({ifany:true})
-    } else {this.setState({ifany:false})}
+      setIfany(true)
+    } else {setIfany(false)}
     
   }
 
 
 
-  render(){
-    // console.log(`User data stashed? : ${this.props.data.userDataStashed}`)
-    // console.log(this.props.data.userData)
-    // console.log(this.state?.ifany)
 
-    return(
-      <div id='home'>
-        {/* <p>User page</p> */}
+  return(
+    <div id='home'>
+      {/* <p>User page</p> */}
 
-        <div id='nav'>
-          <Link to='/Edit' className='links'><button id='link'>Edit Data</button></Link>
-          <button onClick={() => this.props.logout()} >Log out</button>
-        </div>
-
-        <textarea type='text' placeholder='Type Here' onChange={e => this.HandleText(e.target.value)} />
-        <h3>Letters Used</h3>
-        <p>{JSON.stringify(this.state?.lettersUsed, null, 1)}</p>
-
-
-        {this.state?.ifany ? 
-        <>
-        <h3>Insufficent Letters</h3>
-        <p className='insuf'>{JSON.stringify(this.state?.insufLet, null, 1)}</p>
-        </>
-        : <div></div>}
-
-
-        {this.props.user.isLoggedIn ? <Redirect to='/User' />: <Redirect to ='/Signin' /> }
-
-
-        {/* {this.props.data.userDataStashed ? <Redirect to='/User' /> : <Redirect to='/Edit' />} */}
+      <div id='nav'>
+        <Link to='/Edit' className='links'><button id='link'>Edit Data</button></Link>
+        <button onClick={() => this.props.logout()} >Log out</button>
       </div>
-    )
-  }
+
+      <textarea type='text' placeholder='Type Here' onChange={e => HandleText(e.target.value)} />
+      <h3>Letters Used</h3>
+      <p>{JSON.stringify(lettersUsed, null, 1)}</p>
+
+
+      {ifany ? 
+      <>
+      <h3>Insufficent Letters</h3>
+      <p className='insuf'>{JSON.stringify(insufLet, null, 1)}</p>
+      </>
+      : <div></div>}
+
+
+      {this.props.user.isLoggedIn ? <Redirect to='/User' />: <Redirect to ='/Signin' /> }
+
+
+      {/* {this.props.data.userDataStashed ? <Redirect to='/User' /> : <Redirect to='/Edit' />} */}
+    </div>
+  );
 };
+
 
  
 function mapStateToProps(state){

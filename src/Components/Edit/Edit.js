@@ -1,12 +1,12 @@
-import React, {Component} from 'react';
+import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
 import {Link, Redirect} from 'react-router-dom';
 import {logout} from '../../redux/userReducer';
 import {getUserData, saveData} from '../../redux/dataReducer';
 import './Edit.css';
-class Edit extends Component{
+function Edit(){
 
-  componentWillMount(){
+  useEffect(() =>{
     // this.props.getUserData(this.props.user.user_id)
     // console.log(this.props.user.user_id)
     if(!this.props.data.userDataStashed){
@@ -18,22 +18,22 @@ class Edit extends Component{
       this.setState({userData:noData})
     } 
     else {this.setState({userData:this.props.data.userData})}
-  }
+  });
 
-  HandleValue(char, int){
+  const HandleValue = (char, int) =>{
     console.log(char, int)
     const charInt = this.state.userData;
     charInt[char] = parseInt(int)
     this.setState({userData:charInt})
   }
 
-  HandleData(data){
+  const HandleData = (data) =>{
     return Object.keys(data).map((char) => {
       return(
     // Object.keys(this.state?.userData).map()
         <div id='drops'>
           <label for='characters'>{char}: </label>
-          <select id='characters' name='number' onChange={e => this.HandleValue(char, e.target.value)}>
+          <select id='characters' name='number' onChange={e => HandleValue(char, e.target.value)}>
             <option value='' disabled selected>{data[char]}</option>
             <option value={0}>0</option>
             <option value={1}>1</option>
@@ -65,38 +65,34 @@ class Edit extends Component{
 
 
 
-  render(){
 
-    
+  return(
+    <div id='edit'>
+      <h1>Edit page</h1>
 
-    // console.log(this.state?.userData)
-    return(
-      <div id='edit'>
-        <h1>Edit page</h1>
+      <div id='nav'>
 
-        <div id='nav'>
+        <Link to='/User' className='links'><button>Home</button></Link>
+        
+        <button onClick={() => this.props.saveData(this.props.user.user_id, this.state?.userData)}>Save Data</button>
+        
+        <button onClick={() => this.props.logout()} >Log out</button>
 
-          <Link to='/User' className='links'><button>Home</button></Link>
-          
-          <button onClick={() => this.props.saveData(this.props.user.user_id, this.state?.userData)}>Save Data</button>
-          
-          <button onClick={() => this.props.logout()} >Log out</button>
-
-        </div>
-
-        {/* <ul> */}
-        <div className='select'>
-          {/* {this.state.dataInput} */}
-          {this.HandleData(this.state?.userData)}
-        </div>
-        {/* </ul> */}
-
-
-        {this.props.user.isLoggedIn ? <Redirect to='/Edit' />: <Redirect to ='/Signin' /> }
       </div>
-    )
-  }
-};
+
+      {/* <ul> */}
+      <div className='select'>
+        {/* {this.state.dataInput} */}
+        {HandleData(this.state?.userData)}
+      </div>
+      {/* </ul> */}
+
+
+      {this.props.user.isLoggedIn ? <Redirect to='/Edit' />: <Redirect to ='/Signin' /> }
+    </div>
+  )
+}
+
 
  
 function mapStateToProps(state){
