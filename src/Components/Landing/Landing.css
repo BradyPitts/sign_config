@@ -51,15 +51,20 @@ h3{
 }
 
 p{
-  padding: 5vw;
-  width: 75vw;
-  height: 40vw;
+  padding: 2vw;
+  width: 95vw;
+  height: 65vw;
   font-size: 5vw;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: white;
   border: black solid 2px;
+}
+
+#chart{
+  width: 90vw;
+  height: 70vw;
 }
 
 
@@ -84,7 +89,12 @@ p{
   p{
     font-size: 3vw;
     padding:2.5vw;
-    height: 25vw;
-    width: 50vw;
+    height: 40vw;
+    width: 75vw;
+  }
+
+  #chart{
+    height: 40vw;
+    width: 75vw;
   }
 }

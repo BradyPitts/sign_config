@@ -1,14 +1,17 @@
 import React, {useState} from 'react';
 import {useSelector} from 'react-redux';
 import {Link} from 'react-router-dom';
+import {Bar} from 'react-chartjs-2';
 import './Landing.css';
 
 export default function Landing(){
   const [lettersUsed, setLettersUsed] = useState({});
+  const [labels, setLabels] = useState([]);
+  const [chartData, setChartData] = useState({});
   const sampleChar = useSelector(state => state.data.sampleChar)
 
   const HandleText = e =>{
-    console.log(e.target.value)
+    // console.log(e.target.value)
     const input = e.target.value
     const sampleCounter = sampleChar.map((sampleChar) => (input.split(`${sampleChar}`).length -1));
 
@@ -19,10 +22,33 @@ export default function Landing(){
         lettersUsedLoop[sampleChar[i]] = sampleCounter[i];
       }
     }
-    console.log(lettersUsedLoop)
+    // console.log(lettersUsedLoop)
     setLettersUsed(lettersUsedLoop);
-    // console.log(this.state.lettersUsed)
-  }
+
+    const labelsLoop = [];
+    const valuesLoop = [];
+    const colorLoop = [];
+
+    Object.keys(lettersUsedLoop).map((char) =>{
+      labelsLoop.push(char)
+      // console.log(labelsLoop)
+      valuesLoop.push(lettersUsedLoop[char])
+      // console.log(valuesLoop)
+      colorLoop.push('#'+Math.floor(Math.random()*16777215).toString(16));
+    })
+
+
+    setChartData({
+      labels:labelsLoop,
+      datasets:[
+        {
+          label:'Letters Used',
+          data:valuesLoop,
+          backgroundColor: colorLoop,
+        }
+      ]
+    })
+  };
 
 
 
@@ -38,8 +64,12 @@ export default function Landing(){
       <textarea type='text' placeholder='Type Here' onChange={HandleText} />
       {/* {lettersList} */}
       {/* {this.state?.lettersUsed.map()} */}
-      <h3>Letters Used</h3>
-      <p>{JSON.stringify(lettersUsed, null, 10)}</p>
+      {/* <h3>Letters Used</h3> */}
+      {/* <p>{JSON.stringify(lettersUsed, null, 10)}</p> */}
+
+      <p id='chart'>
+        <Bar data={chartData}/>
+      </p>
     </div>
   );
 };

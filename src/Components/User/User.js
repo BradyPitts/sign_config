@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {Link, Redirect} from 'react-router-dom';
+import {Bar} from 'react-chartjs-2';
 import {logout} from '../../redux/userReducer';
 import {getUserData} from '../../redux/dataReducer';
 import './User.css';
@@ -9,6 +10,7 @@ export default function User(){
   const [ifany, setIfany] = useState('');
   const [lettersUsed, setLettersUsed] = useState('');
   const [insufLet, setInsufLet] = useState('');
+  const [chartData, setChartData] = useState({});
   const isLoggedIn = useSelector(state => state.user.isLoggedIn);
   const user_id = useSelector(state => state.user.user_id);
   const userDataStashed = useSelector(state => state.data.userDataStashed);
@@ -59,6 +61,31 @@ export default function User(){
     if(Object.keys(insufLetLoop).length > 0){
       setIfany(true)
     } else {setIfany(false)}
+
+    
+    const labelsLoop = [];
+    const valuesLoop = [];
+    const colorLoop = [];
+
+    Object.keys(lettersUsedLoop).map((char) =>{
+      labelsLoop.push(char)
+      console.log(labelsLoop)
+      valuesLoop.push(lettersUsedLoop[char])
+      console.log(valuesLoop)
+      colorLoop.push('#'+Math.floor(Math.random()*16777215).toString(16));
+    })
+
+
+    setChartData({
+      labels:labelsLoop,
+      datasets:[
+        {
+          label:'Letters Used',
+          data:valuesLoop,
+          backgroundColor: colorLoop,
+        }
+      ]
+    })
     
   }
 
@@ -75,8 +102,11 @@ console.log(ifany)
       </div>
 
       <textarea type='text' placeholder='Type Here' onChange={HandleText} />
-      <h3>Letters Used</h3>
-      <p>{JSON.stringify(lettersUsed, null, 1)}</p>
+      {/* <h3>Letters Used</h3>
+      <p>{JSON.stringify(lettersUsed, null, 1)}</p> */}
+      <p id='chart'>
+        <Bar data={chartData}/>
+      </p>
 
 
       {ifany ? 
