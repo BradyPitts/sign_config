@@ -62,7 +62,7 @@ export default function Signin(){
 
         <button onClick={() => dispatch(signUp(email, password))}>Sign Up</button>
 
-        <button onClick={() => dispatch(sendNewPassword(email, makePassword(8)))}>Forgot Password</button>
+        {/* <button onClick={() => dispatch(sendNewPass */}
 
         <Link to='/' className='links' ><button>Back to Sample Page</button></Link>
       </div>
