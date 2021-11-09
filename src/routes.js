@@ -9,9 +9,9 @@ import Edit from './Components/Edit/Edit';
 
 export default (
   <Switch>
-    <Route exact path='/' component={Landing} />
+    <Route exact path='/' component={User} />
+    <Route path='/Sample' component={Landing} />
     <Route path='/Signin' component={Signin} />
-    <Route path='/User' component={User} />
     <Route path='/Edit' component={Edit} />
   </Switch>
 )

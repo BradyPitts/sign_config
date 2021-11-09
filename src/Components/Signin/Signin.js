@@ -64,10 +64,10 @@ export default function Signin(){
 
         {/* <button onClick={() => dispatch(sendNewPass */}
 
-        <Link to='/' className='links' ><button>Back to Sample Page</button></Link>
+        <Link to='/Sample' className='links' ><button>Try for Free Here</button></Link>
       </div>
 
-      {isLoggedIn ? <Redirect to='/User' />: <Redirect to ='/Signin' /> }
+      {isLoggedIn ? <Redirect to='/' />: <Redirect to ='/Signin' /> }
       
     </div>
   );

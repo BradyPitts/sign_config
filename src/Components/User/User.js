@@ -117,7 +117,7 @@ console.log(ifany)
       : <div></div>}
 
 
-      {isLoggedIn ? <Redirect to='/User' />: <Redirect to ='/Signin' /> }
+      {isLoggedIn ? <Redirect to='/' />: <Redirect to ='/Signin' /> }
 
 
       {/* {userDataStashed ? <Redirect to='/User' /> : <Redirect to='/Edit' />} */}

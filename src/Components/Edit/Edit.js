@@ -10,7 +10,8 @@ export default function Edit(){
   const user_id = useSelector(state => state.user.user_id);
   const userDataStashed = useSelector(state => state.data.userDataStashed);
   const userData = useSelector(state => state.data.userData);
-  const sampleChar = useSelector(state => state.data.sampleChar)
+  const sampleChar = useSelector(state => state.data.sampleChar);
+  const advancedChar = useSelector(state => state.data.advancedChar);
   const dispatch = useDispatch();
 
   useEffect(() =>{
@@ -77,13 +78,23 @@ export default function Edit(){
 
       <div id='nav'>
 
-        <Link to='/User' className='links'><button>Home</button></Link>
+        <Link to='/' className='links'><button>Home</button></Link>
         
         <button onClick={() => dispatch(saveData(user_id, newUserData))}>Save Data</button>
         
         <button onClick={() => dispatch(logout())} >Log out</button>
 
       </div>
+
+      {/* <div id='dataset'>
+        <label for='dataset'>Data Set</label>
+        <select onChange >
+        <option  value='' disabled selected>{data}</option>
+        <option />
+        <option />
+        <option />
+        </select>
+      </div> */}
 
       {/* <ul> */}
       <div className='select'>
