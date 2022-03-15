@@ -55,6 +55,7 @@ export default function Landing(){
   return(
     <div id='landing'>
       <h1>Sample Configurator</h1>
+      <h3>Type in the box below to calculate how many of each character you need.</h3>
       <div id='buttton'>
       <Link to='/Signin' className='links'><button>Sign In</button></Link>
       </div>

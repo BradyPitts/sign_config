@@ -32,6 +32,10 @@ select{
   width: 15vw;
 }
 
+#dataset{
+  width:300px;
+}
+
 @media(min-width: 500px){
 
   button{
@@ -46,6 +50,8 @@ select{
     width: 100px;
     font-size: large;
   }
+
+
 
   label{
     font-size: x-large;

@@ -47,6 +47,8 @@ export default function Signin(){
 
       <h1>Sign in</h1>
 
+      <h3>This website is still a work in progress. Please forgive any bugs or missing features.</h3>
+
       <div className="form-group">
         <label>Email: </label>
         <input type="email" className="form-control" placeholder="Email" onChange={handleEmail} />

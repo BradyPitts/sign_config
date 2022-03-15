@@ -18,10 +18,14 @@ export default function User(){
   const dispatch = useDispatch();
 
   useEffect(() =>{
+    let useEffCount = 0;
     console.log(`User Data Stashed? : ${userDataStashed}`)
-    if(!userDataStashed){
+    console.log(useEffCount > 0)
+    if(!userDataStashed && !useEffCount > 0){
       console.log(`Fetching data for user #${user_id}`)
       dispatch(getUserData(user_id));
+      useEffCount += 1;
+      return;
     }
   });
 
@@ -91,7 +95,7 @@ export default function User(){
 
 
 
-console.log(ifany)
+// console.log(ifany)
   return(
     <div id='home'>
       {/* <p>User page</p> */}
@@ -100,6 +104,8 @@ console.log(ifany)
         <Link to='/Edit' className='links'><button id='link'>Edit Data</button></Link>
         <button onClick={() => dispatch(logout())} >Log out</button>
       </div>
+
+      <h3>Type below and automaticaly compare to your saved character sets.</h3>
 
       <textarea type='text' placeholder='Type Here' onChange={HandleText} />
       {/* <h3>Letters Used</h3>
@@ -111,7 +117,7 @@ console.log(ifany)
 
       {ifany ? 
       <>
-      <h3>Insufficent Letters</h3>
+      <h2>Insufficent Letters</h2>
       <p className='insuf'>{JSON.stringify(insufLet, null, 1)}</p>
       </>
       : <div></div>}

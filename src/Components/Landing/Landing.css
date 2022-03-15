@@ -71,9 +71,9 @@ p{
 @media(min-width: 550px){
 
   button{
-    margin-left: 50vw;
-    margin-right: 50vw;
-    margin: 50px;
+    /* margin-left: 50vw;
+    margin-right: 50vw; */
+    margin: 5px;
     width: 200px;
     height: 100px;
     font-size: xx-large;

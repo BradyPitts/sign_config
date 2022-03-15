@@ -36,7 +36,10 @@ export const login = (email, password) => {
   // console.log(email, password)
   let userData = axios.post('/auth/login', {email, password})
   .then(res => res.data)
-  .catch(err => console.log(err))
+  .catch(err =>{
+    alert(`A Login error has occured ${err}`)
+    console.log(err)
+  } )
   return{
     type: LOGIN_USER,
     payload: userData
@@ -69,18 +72,18 @@ export const sendNewPassword = (email, newPassword) => {
 export default function reducer(state = initialState, action){
   switch(action.type){
     case REGISTER_USER + "_FULFILLED":
-      console.log(action.payload)
+      // console.log(action.payload)
       return{...state, user_id:action.payload.user.user_id, isLoggedIn:action.payload.isLoggedIn}
 
     case LOGIN_USER + "_FULFILLED":
-      console.log(action.payload)
+      // console.log(action.payload)
       return{...state, user_id:action.payload.user.user_id, isLoggedIn:action.payload.isLoggedIn}
 
     case LOGOUT_USER + "_FULFILLED":
       return{initialState}
 
     case SEND_NEW_PASSWORD + "_FULFILLED":
-      console.log(action.payload)
+      // console.log(action.payload)
       return{...state, user_id:action.payload.user.user_id, admin:action.payload.user.admin, isLoggedIn:action.payload.isLoggedIn}
 
     default:
