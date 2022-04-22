@@ -6,33 +6,35 @@ import {saveData} from '../../redux/dataReducer';
 import './Edit.css';
 export default function Edit(){
   const [newUserData, setNewUserData] = useState('');
-  // const [userDataStashed, setUserDataStashed] = useState('');
+  const [userDataStashed, setUserDataStashed] = useState('');
+  // const newUserData = useSelector(state => state.data.newUserData);
+  // const setNewUserData = useSelector(state => state.data.setNewUserData);
+  // const userDataStashed = useSelector(state => state.data.userDataStashed);
+  // const setUserDataStashed = useSelector(state => state.data.setUserDataStashed);
   const isLoggedIn = useSelector(state => state.user.isLoggedIn);
   const user_id = useSelector(state => state.user.user_id);
-  const userDataStashed = useSelector(state => state.data.userDataStashed);
   const userData = useSelector(state => state.data.userData);
   const sampleChar = useSelector(state => state.data.sampleChar);
   const advancedChar = useSelector(state => state.data.advancedChar);
   const dispatch = useDispatch();
+  let userDataDisplayed = {};
 
   useEffect(() =>{
-    // this.props.getUserData(this.props.user.user_id)
-    // console.log(this.props.user.user_id)
-    let useEffCount = 0;
-    // let i = 0;
-    if(!userDataStashed & !useEffCount > 0){
+    if(!userDataStashed){
       console.log('Initializing new user data slate') 
-      const noData = {...advancedChar};
+      let noData = {...advancedChar};
 
       setNewUserData(noData)
+      setUserDataStashed(true)
       console.log(noData)
-      // setUserDataStashed(true)
-      // userDataStashed = true;
-      useEffCount += 1;
-      return;
     } 
-    // else {setNewUserData(userData)}
+    return;
   });
+
+  const HandleSet = (data) => { 
+    console.log(`data set changed to ${data}`)
+    userDataDisplayed = data
+  };
 
   const HandleValue = (char, int) =>{
     console.log(char, int)
@@ -42,7 +44,7 @@ export default function Edit(){
   }
 
   const HandleData = (data) =>{
-    console.log(userData)
+    console.log(data)
     return Object.keys(data).map((char) => {
       return(
     // Object.keys(this.state?.userData).map()
@@ -119,14 +121,14 @@ export default function Edit(){
           
           <label for='dataset'>Select Character Set to Edit</label>
           <br />
-          <select id='dataset' name='set' onChange={e => HandleData(e.target.value)}>
-            {/* <option value='' disabled selected></option> */}
+          <select id='dataset' name='set' onChange={e => HandleSet(e.target.value)}>
+            <option value='' disabled selected></option>
             <option value={userData.upper}>Upper Case Letters</option>
-            <option value={newUserData.lower}>Lower Case Letters</option>
+            <option value={userData.lower}>Lower Case Letters</option>
             <option value={userData.special}>Special Characters</option>
           </select>
         </div>
-        {/* {HandleData(userData)} */}
+        {HandleData(userDataDisplayed)}
       </div>
       {/* </ul> */}
 

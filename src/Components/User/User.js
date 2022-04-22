@@ -18,13 +18,13 @@ export default function User(){
   const dispatch = useDispatch();
 
   useEffect(() =>{
-    let useEffCount = 0;
+    // let useEffCount = 0;
     console.log(`User Data Stashed? : ${userDataStashed}`)
-    console.log(useEffCount > 0)
-    if(!userDataStashed && !useEffCount > 0){
+    // console.log(useEffCount > 0)
+    if(!userDataStashed ){//&& !useEffCount > 0){
       console.log(`Fetching data for user #${user_id}`)
       dispatch(getUserData(user_id));
-      useEffCount += 1;
+      // useEffCount += 1;
       return;
     }
   });
