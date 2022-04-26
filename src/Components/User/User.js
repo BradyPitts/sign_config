@@ -20,6 +20,7 @@ export default function User(){
   useEffect(() =>{
     // let useEffCount = 0;
     console.log(`User Data Stashed? : ${userDataStashed}`)
+    console.log({userData})
     // console.log(useEffCount > 0)
     if(!userDataStashed ){//&& !useEffCount > 0){
       console.log(`Fetching data for user #${user_id}`)

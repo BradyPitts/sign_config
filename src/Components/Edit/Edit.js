@@ -20,6 +20,8 @@ export default function Edit(){
   let userDataDisplayed = {};
 
   useEffect(() =>{
+    console.log(`Edit: is user data stashed? : ${userDataStashed}`)
+    console.log({userData})
     if(!userDataStashed){
       console.log('Initializing new user data slate') 
       let noData = {...advancedChar};
@@ -32,8 +34,13 @@ export default function Edit(){
   });
 
   const HandleSet = (data) => { 
-    console.log(`data set changed to ${data}`)
+    console.log(`HandleSet data changed to:`)
+    console.log(data)
+    // console.log(userData.lower)
+    // Object.entries(data)
     userDataDisplayed = data
+    // HandleValue(userDataDisplayed)
+    console.log(`user data displayed ${userDataDisplayed}`)
   };
 
   const HandleValue = (char, int) =>{
