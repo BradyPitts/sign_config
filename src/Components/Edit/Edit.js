@@ -33,12 +33,12 @@ export default function Edit(){
     return;
   });
 
-  const HandleSet = (data) => { 
+  const HandleSet = (set) => { 
     console.log(`HandleSet data changed to:`)
-    console.log(data)
+    console.log({set})
     // console.log(userData.lower)
     // Object.entries(data)
-    userDataDisplayed = data
+    userDataDisplayed = userData.upper
     // HandleValue(userDataDisplayed)
     console.log(`user data displayed ${userDataDisplayed}`)
   };
